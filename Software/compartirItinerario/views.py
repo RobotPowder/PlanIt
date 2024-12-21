@@ -3,17 +3,17 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from core.models import Itinerario, Viajero, ItinerarioCompartido
 
-def compartir_itinerario(request):
+def compartir_itinerario(request, correo_viajero):
     if request.method == "GET":
-        # 1. Obtener el viajero mediante su correo (supongamos que el correo se obtiene de la autenticación o como parámetro)
-        correo_viajero = "viajero@example.com"  # Ejemplo, puedes reemplazarlo con request.user.email si usas autenticación
         try:
+            # Busca al viajero utilizando el correo recibido como parámetro
             viajero = Viajero.objects.get(correo=correo_viajero)
         except Viajero.DoesNotExist:
+            # Muestra un mensaje de error si el viajero no existe
             messages.error(request, "El viajero no existe.")
-            return render(request, 'compartir.html', {'itinerarios': []})  # Renderiza la misma página con error
+            return render(request, 'compartir.html', {'itinerarios': []})
 
-        # 2. Obtener los itinerarios asociados al viajero
+        # Obtiene los itinerarios del viajero
         itinerarios = Itinerario.objects.filter(viajero=viajero)
         return render(request, 'compartir.html', {'itinerarios': itinerarios})
 
