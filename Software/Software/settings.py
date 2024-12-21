@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'compartirItinerario',
     'recibirItinerario',
     'core',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

@@ -10,6 +10,10 @@ class Itinerario(models.Model):
     viajero = models.ForeignKey(Viajero, on_delete=models.CASCADE, related_name="itinerarios")
     nombre = models.CharField(max_length=100)
     fecha = models.DateField()
+    @staticmethod
+    def solicitar_itinerarios_viajero(viajero_id):
+        """Devuelve todos los itinerarios de un viajero por su ID."""
+        return Itinerario.objects.filter(viajero_id=viajero_id)
 
 class Destino(models.Model):
     pais = models.CharField(max_length=100)
@@ -24,3 +28,8 @@ class Actividad(models.Model):
 
 class ItinerarioCompartido(models.Model):
     itinerario = models.OneToOneField(Itinerario, on_delete=models.CASCADE, related_name="itinerario_compartido")
+
+    @staticmethod
+    def compartir_itinerario(itinerario, correo_destinatario):
+        """Crea una nueva relación de itinerario compartido."""
+        return ItinerarioCompartido.objects.create(itinerario=itinerario, destinatario=correo_destinatario)
