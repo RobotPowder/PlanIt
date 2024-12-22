@@ -1,4 +1,3 @@
-<!-- templates/compartirItinerario/compartir.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,31 +9,27 @@
     <!-- Mostrar mensajes -->
     {% if messages %}
         {% for message in messages %}
-            <p>{{ message }}</p>
+            <p style="color: red;">{{ message }}</p>
         {% endfor %}
     {% endif %}
 
     <form method="post">
         {% csrf_token %}
-
-        <!-- Seleccionar itinerario -->
-        <label for="itinerario_id">Selecciona un itinerario:</label>
-        <select name="itinerario_id" id="itinerario_id" required>
+        <label for="itinerario_nombre">Selecciona un itinerario:</label>
+        <select name="itinerario_nombre" id="itinerario_nombre" required>
             <option value="" disabled selected>Selecciona un itinerario</option>
             {% for itinerario in itinerarios %}
-                <option value="{{ itinerario.id }}">{{ itinerario.nombre }}</option>
+                <option value="{{ itinerario.nombre }}">{{ itinerario.nombre }}</option>
             {% endfor %}
         </select>
 
         <br><br>
 
-        <!-- Campo para ingresar correo -->
         <label for="correo_destinatario">Correo del destinatario:</label>
         <input type="email" name="correo_destinatario" id="correo_destinatario" required>
 
         <br><br>
 
-        <!-- Botón compartir -->
         <button type="submit">Compartir</button>
     </form>
 </body>

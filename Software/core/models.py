@@ -28,8 +28,16 @@ class Actividad(models.Model):
 
 class ItinerarioCompartido(models.Model):
     itinerario = models.OneToOneField(Itinerario, on_delete=models.CASCADE, related_name="itinerario_compartido")
+    emisor = models.EmailField()
+    receptor = models.EmailField()
 
     @staticmethod
-    def compartir_itinerario(itinerario, correo_destinatario):
-        """Crea una nueva relación de itinerario compartido."""
-        return ItinerarioCompartido.objects.create(itinerario=itinerario, destinatario=correo_destinatario)
+    def compartir_itinerario(itinerario, correo_emisor, correo_receptor):
+        """
+        Crea una nueva relación de itinerario compartido.
+        """
+        return ItinerarioCompartido.objects.create(
+            itinerario=itinerario,
+            emisor=correo_emisor,
+            receptor=correo_receptor
+        )
