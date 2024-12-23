@@ -1,5 +1,5 @@
 from django import forms
-from .models import Actividad
+from core.models import Actividad
 from datetime import time
 
 class ActividadForm(forms.ModelForm):

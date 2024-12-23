@@ -29,6 +29,6 @@ def signup(request):
             password=make_password(password1)  # Guardar la contraseña encriptada
         )
         login(request, user)  # Inicia sesión automáticamente
-        return redirect('home')  # REDIRIGIR A LA PÁGINA PRINCIP
+        return redirect('inicio')  # REDIRIGIR A LA PÁGINA PRINCIP
 
     return render(request, 'signup.html')

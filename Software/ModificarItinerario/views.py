@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ActividadForm
-from .models import Itinerario, Actividad
+from core.models import Itinerario, Actividad
 
 
 def ver_itinerario(request, itinerario_id):

@@ -22,6 +22,6 @@ urlpatterns = [
     path('core/', include('core.urls')),  # Agrega el controlador principal
     path('compartirItinerario/', include('compartirItinerario.urls')),
     path('recibirItinerario/', include('recibirItinerario.urls')),
-    path('modificarItinerario/', include('modificarItinerario.urls')),
-    path('loginSesion/', include('modificarItinerario.urls')),
+    path('ModificarItinerario/', include('ModificarItinerario.urls')),
+    path('LoginSesion/', include('LoginSesion.urls')),
 ]
