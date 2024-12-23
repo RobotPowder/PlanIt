@@ -1,0 +1,22 @@
+<h1>Itinerario: {{ itinerario.nombre }}</h1>
+<p>Fecha: {{ itinerario.fecha }}</p>
+
+<h2>Actividades:</h2>
+<ul>
+    {% for actividad in actividades %}
+        <li>
+            <strong>Horario:</strong> {{ actividad.horario }} - {{ actividad.horario|add:"01:00" }} <br>
+            <strong>Nombre:</strong> {{ actividad.nombre }} <br>
+            <strong>Destino:</strong> {{ actividad.destino.ciudad }}, {{ actividad.destino.pais }} <br>
+            <a href="{% url 'modificar_actividad' actividad.id %}">Modificar</a> |
+            <a href="{% url 'eliminar_actividad' actividad.id %}">Eliminar</a>
+        </li>
+        
+    {% empty %}
+        <p>No hay actividades para este itinerario.</p>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'agregar_actividad' itinerario.id %}">Agregar Actividad</a>
+<br>
+

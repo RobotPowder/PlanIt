@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Actividad</title>
+</head>
+<body>
+    <h1>¿Seguro que quieres eliminar la actividad: {{ actividad.nombre }}?</h1>
+
+    <!-- Formulario para confirmar eliminación -->
+    <form method="POST" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit">Eliminar Actividad</button>
+    </form>
+
+    <!-- Botón para cancelar la acción y volver al itinerario -->
+    <a href="{% url 'ver_itinerario' actividad.itinerario.id %}" style="text-decoration: none;">
+        <button type="button">No eliminar</button>
+    </a>
+</body>
+</html>

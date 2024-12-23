@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'recibirItinerario',
     'core',
     'django_extensions',
+    'loginSesion',
+    'modificarItinerario',
 ]
 
 MIDDLEWARE = [
