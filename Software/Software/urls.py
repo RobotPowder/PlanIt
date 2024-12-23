@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('core/', include('core.urls')),  # Agrega el controlador principal
     path('compartirItinerario/', include('compartirItinerario.urls')),
+    path('recibirItinerario/', include('recibirItinerario.urls')),
 ]

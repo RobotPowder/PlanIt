@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recibir Itinerario</title>
+</head>
+<body>
+    <h1>Itinerarios Compartidos</h1>
+
+    <!-- Mostrar mensajes -->
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Mostrar lista de itinerarios compartidos -->
+    {% if itinerarios %}
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Itinerario</th>
+                        <th>Emisor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for itinerario in itinerarios %}
+                        <tr>
+                            <td>{{ itinerario.itinerario.nombre }}</td>
+                            <td>{{ itinerario.emisor }}</td>
+                            <td>
+                                <!-- Botón Aceptar -->
+                                <button type="submit" name="accion" value="aceptar" onclick="this.form.itinerario_id.value='{{ itinerario.id }}'">Aceptar</button>
+                                <!-- Botón Rechazar -->
+                                <button type="submit" name="accion" value="rechazar" onclick="this.form.itinerario_id.value='{{ itinerario.id }}'">Rechazar</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- Campo oculto para el ID del itinerario -->
+            <input type="hidden" name="itinerario_id" value="">
+        </form>
+    {% else %}
+        <p>No tienes itinerarios compartidos.</p>
+    {% endif %}
+</body>
+</html>
